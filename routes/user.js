@@ -350,6 +350,13 @@ let setRouter = (app) => {
 
 }// end of setRouter
 
+//for apidoc
+ app.get(`${baseUrl}/apidoc`, userController.apiDoc);
+//end
+
+//for eventdoc
+app.get(`${baseUrl}/eventdoc`, userController.eventDoc);
+//end
 module.exports = {
     setRouter: setRouter
 }

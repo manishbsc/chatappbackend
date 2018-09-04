@@ -464,6 +464,20 @@ let logout = (req, res) => {
   
 } // end of the logout function.
 
+//api doc
+let apiDoc=(req,res)
+{
+  res.redirect('./../apidoc/index.html');
+
+}
+//end api doc
+
+//event doc
+let eventDoc=(req,res)
+{
+  res.redirect('./../eventDoc/index.html');
+
+}
 
 module.exports = {
     getAllUser : getAllUser,
@@ -474,5 +488,8 @@ module.exports = {
     loginFunction : loginFunction,
     forgotPassword : forgotPassword,
     resetPassword : resetPassword,
-    logout : logout
+    logout : logout,
+    apiDoc:apiDoc,
+    eventDoc:eventDoc
+   
 }
