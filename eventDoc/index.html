@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from chatapi.edwisor.com/eventDoc/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 May 2018 07:42:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Events Doc</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <!-- <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+    <style>
+    /* Custom Stylesheet */
+
+    .icon-block {
+        padding: 0 15px;
+    }
+
+    .icon-block .material-icons {
+        font-size: inherit;
+    }
+    </style>
+</head>
+
+<body>
+   
+    <div class="section no-pad-bot" style="margin-bottom: 0px" id="index-banner">
+        <div class="container" style="width: 80%">
+          <p style="font-size: 2em; font-weight: 540; text-align: center">Events documentation</p>
+            <div class="row">
+
+                <div class="col hide-on-small-only m3 l2">
+                    <ul class="section table-of-contents" style="position: fixed">
+                        <li><a href="#listen" style="color: #03a9f4; font-size: 1.2em; font-weight: bold">Listening Events</a></li>
+                        <li><a href="#verifyUser">verifyUser</a></li>
+                        <li><a href="#usersList">online-user-list</a></li>
+                        <li><a href="#typing">typing</a></li>
+                        <li><a href="#message">message</a></li>
+                        <li><a href="#ClosedGroup">ClosedGroup</a></li>
+                        <li><a href="#GroupCreated">GroupCreated</a></li>
+                        <li><a href="#GroupRemoved">GroupRemoved</a></li>
+                        <li><a href="#authError">auth-error</a></li>
+                        <li><a href="#disconnect">disconnect</a></li>
+
+                        <li><a href="#emit" style="color: #03a9f4; font-size: 1.2em; font-weight: bold">Emitting Events</a></li>
+                        <li><a href="#set-user">set-user</a></li>
+						<li><a href="#chat-msg">chat-msg</a></li>
+                        <li><a href="#GroupClosed">GroupClosed</a></li>
+                        <li><a href="#userTyping">userTyping</a></li>
+                        <li><a href="#newGroup">newGroup</a></li>
+                        <li><a href="#GrpDeleted">GrpDeleted</a></li>
+                        <li><a href="#userId">userId</a></li>
+                    </ul>
+                </div>
+
+                <div class="col s12 m9 l10">
+
+                    <div id="listen" class="section scrollspy"></div>
+                    <h4>Events to listen</h4>
+
+                    <div id="verifyUser" class="section scrollspy">
+                        <h5>verifyUser event</h5>
+                        This event <span style="font-weight: 600">("verifyUser")</span> has to be listened on the user's end to verify user authentication.<br/>
+                        user will only be set as online user after verification of authentication token.<br/>
+                    </div>
+                    <div id="usersList" class="section scrollspy">
+                        <h5>online-user-list event</h5>
+                        This event <span style="font-weight: 600">("online-user-list")</span> has to be listened on the user's end to identify all available users that are currently online.<br/>
+                      
+                        The output will be an object, object has key as userId and value as full name.
+                    </div>
+                 
+                    <div id="message" class="section scrollspy">
+                        <h5>message event</h5>
+                       
+                        This event <span style="font-weight: 600">("message")</span> has to be listened to get all chats on chatRoom.The chat which is sent by user will<br/>
+						be listened to each member who has joined a room.<br/>
+                        Example output it as follows:<br/>
+                        <pre>
+                            {
+                                chatId: 'unique chat id',
+                                message: 'you message',
+                                createdOn: date, 
+                                receiverId: 'chatRoomId',
+                                receiverName: 'chatRoomName',
+                                senderId: 'userId of sender',
+                                senderName: 'full name of sender'
+                            }
+                        </pre>
+                    </div>
+                    <div id="typing" class="section scrollspy">
+                        <h5>typing event</h5>
+                        This event <span style="font-weight: 600">("typing")</span> has to be listened to get data who is typing.This data will be provided to every<br/>
+						member of Room.
+                    </div>
+                    <div id="ClosedGroup" class="section scrollspy">
+                        <h5>ClosedGroup event</h5>
+                        This event <span style="font-weight: 600">("ClosedGroup")</span> has to be listened to get know if group joined by user is closed. <br/>This event is listened by every
+						member of Room. The group name will provided as data.
+                    </div>
+                    <div id="GroupCreated" class="section scrollspy">
+                        <h5>GroupCreated event</h5>
+                        This event <span style="font-weight: 600">("GroupCreated")</span> has to be listened to get know if any new group has been created.<br/> This event is listened by every
+						user of Group Chat Application. The group name will provided as data.
+                    </div>
+                    <div id="GroupRemoved" class="section scrollspy">
+                        <h5>GroupRemoved event</h5>
+                        This event <span style="font-weight: 600">("GroupRemoved")</span> has to be listened to get know if any group has been deleted.<br/> This event is listened by every
+						user of Group Chat Application. The group name will provided as data.
+                    </div>
+                    <div id="authError" class="section scrollspy">
+                        <h5>auth-error event</h5>
+                        This event <span style="font-weight: 600">("auth-error")</span> has to be listened to get know if any error has occurred on socket.<br/> This event is emitted to every
+						user of Group Chat Application.
+                    </div>
+                    <div id="disconnect" class="section scrollspy">
+                        <h5>disconnection</h5>
+                        This event <span style="font-weight: 600">("disconnection")</span> has to be emitted, when the user gets disconnected(logout).<br/>
+                       
+                    </div>
+
+                    <div id="emit" class="section scrollspy"></div>
+                    <h4>Events to emit</h4>
+
+                    <div id="set-user" class="section scrollspy">
+                        <h5>set-user event</h5>
+                        This event <span style="font-weight: 600">("set-user")</span> has to be emitted when a user comes online.<br/>
+                        User can only be set as online only after verification of authentication token. Which you have pass here.
+                        The following data has to be emitted:<br/>
+                        authentication token
+                    </div>
+					
+                    <div id="chat-msg" class="section scrollspy">
+                        <h5>chat-msg event</h5>
+                        This event <span style="font-weight: 600">("chat-msg")</span> has to be emitted to savechat message in DB and notify user in chat room<br/>
+                        The following data has to be emitted:<br/>
+                        <pre>
+                            {
+                                senderName: 'John Doe',
+                                senderId: 'userId of sender',
+                                receiverName: chatRoomName',
+                                receiverId: 'chatRoomId of Room',
+                                message: 'your chat message',
+                                createdOn: date
+                            }
+                        </pre>
+                    </div>
+                    <div id="userTyping" class="section scrollspy">
+                        <h5>userTyping</h5>
+                        This event <span style="font-weight: 600">("userTyping")</span> has to be emitted to notify every other member of chat room .<br/>
+                        The following data has to be emitted<br/>
+                        <pre>
+                           {
+                                userName:'Name of User who is typing',
+                                room:'ChatRoomId'
+			               }
+                        </pre>
+                    </div>
+                    <div id="GroupClosed" class="section scrollspy">
+                        <h5>GroupClosed</h5>
+                        This event <span style="font-weight: 600">("GroupClosed")</span> has to be emitted to notify every other user of Group Chat Application .<br/>
+                        The group name has to be emitted.
+                    </div>
+					<div id="newGroup" class="section scrollspy">
+                        <h5>newGroup</h5>
+                        This event <span style="font-weight: 600">("newGroup")</span> has to be emitted to notify every other user of Group Chat Application .<br/>
+                        The group name has to be emitted.
+                    </div>
+                    <div id="GrpDeleted" class="section scrollspy">
+                        <h5>GrpDeleted</h5>
+                        This event <span style="font-weight: 600">("GrpDeleted")</span> has to be emitted to notify every other user of Group Chat Application .<br/>
+                        The group name has to be emitted.
+                    </div>
+                    <div id="userId" class="section scrollspy">
+                        <h5>userId</h5>
+                        This event <span style="font-weight: 600">("userId")</span> has to be emitted to join the group via group Invite or from other groups list .<br/>
+                        The following data has to be emitted<br/>
+                        <pre>
+                            {
+                                userEmail: "Email Id of the user who wants to join the group",
+                                roomId : "roomId of the group which is to be joined ",
+                                userId : "userId of the user who will join the chat Group"
+                            }
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<br/><br/><br/><br/>
+
+    <!--  Scripts-->
+    <script src="code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.scrollspy').scrollSpy();
+    });
+    </script>
+    <script>
+    (function($) {
+        $(function() {
+
+            $('.button-collapse').sideNav();
+
+        }); // end of document ready
+    })(jQuery); // end of jQuery name space
+    </script>
+</body>
+
+
+<!-- Mirrored from chatapi.edwisor.com/eventDoc/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 May 2018 07:42:06 GMT -->
+</html>

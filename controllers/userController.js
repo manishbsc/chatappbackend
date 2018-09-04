@@ -179,7 +179,7 @@ let signUpFunction = (req, res) => {
             //console.log(resolve)
             delete resolve.password
             let apiResponse = response.generate(false, 'User created', 200, resolve)
-            mailer.autoEmail(resolve.email, `<b> Hi ${resolve.firstName} ${resolve.lastName}, You has been succesfully created your account</b>`,`Welcome to Group Chat`);
+            mailer.autoEmail(resolve.email, `<b> Hi ${resolve.firstName} ${resolve.lastName}, You has been succesfully created your account</b></br> <img src="./welcom.jpg" style="height:100%;width:100%">`,`Welcome to Group Chat`);
             res.send(apiResponse)
         })
         .catch((err) => {
