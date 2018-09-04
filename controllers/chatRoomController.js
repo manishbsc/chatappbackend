@@ -398,7 +398,7 @@ let sendInvite = (req, res) => {
     let sendMail = (details) => {
         return new Promise((reject, resolve) => {
             logger.info("User & Group found", "chatRoomController: sendMail", 10);
-            mailer.autoEmail(req.body.userEmail, `<a href='http://localhost:4200/joinGroup/${details.roomDetails.roomId}/${details.roomDetails.roomName}'>click here to join the Chat Room</a>`, "Invitation to Join Chat");
+            mailer.autoEmail(req.body.userEmail, `<a href='groupchat.memanish.com/joinGroup/${details.roomDetails.roomId}/${details.roomDetails.roomName}'>click here to join the Chat Room</a>`, "Invitation to Join Chat");
             let apiResponse = response.generate(false, "User & Group found", 200,"Mail sent successfully");
             resolve(apiResponse);
         });

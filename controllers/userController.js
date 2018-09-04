@@ -360,7 +360,7 @@ let forgotPassword = (req, res) => {
             }
             else {
                 logger.info("user found", "userController: findUser()", 10);
-                mailer.autoEmail(req.body.email, `<b>Hello ${userDetails.firstName},</b><br><br><br>  Click below image to reset password <br><br><br><br> <a href='http://localhost:4200/resetPassword/${userDetails.userId}'><img src="https://material.angular.io/assets/img/examples/shiba1.jpg"></a>`,'Reset Password Request');
+                mailer.autoEmail(req.body.email, `<b>Hello ${userDetails.firstName},</b><br><br><br>  Click below image to reset password <br><br><br><br> <a href='groupchat.memanish.com/resetPassword/${userDetails.userId}'><img src="https://material.angular.io/assets/img/examples/shiba1.jpg"></a>`,'Reset Password Request');
                 let apiResponse = response.generate(false, "User Details Found", 200, "Mail sent successfully");
                 res.send(apiResponse);
             }
